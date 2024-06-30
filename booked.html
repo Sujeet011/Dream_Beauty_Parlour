@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Items</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .booked-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 12px; 
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+          @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .booked-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .delete-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="Head">
+        <img id="menuToggle" style="width: 15%; cursor: pointer;" src="https://img.freepik.com/premium-vector/bridal-logo_754499-66.jpg">
+        <ul id="menuList">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="models.html">Models</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Policy.html">Policy</a></li>
+            <li><a href="booked.html">Booked</a></li>
+        </ul>
+    </div>
+    <h1>Booked Items</h1>
+    
+    <div id="bookedItems" class="container">
+   
+    </div>
+
+    <script>
+        const bookedItems = JSON.parse(localStorage.getItem('bookedModels')) || [];
+        const bookedItemsDiv = document.getElementById('bookedItems');
+
+        bookedItems.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('booked-item');
+
+            itemDiv.innerHTML = `
+                <p><strong>User:</strong> ${item.userId}</p>
+                <p><strong>Model:</strong> ${item.name}</p>
+                <p><strong>Price:</strong> $${item.price}</p>
+                <button class="delete-btn" onclick="deleteItem('${item.name}', ${item.price}, ${item.userId})">Delete</button>
+            `;
+
+            bookedItemsDiv.appendChild(itemDiv);
+        });
+
+        function deleteItem(modelName, price, userId) {
+            let bookedItems = JSON.parse(localStorage.getItem('bookedModels')) || [];
+
+            bookedItems = bookedItems.filter(item => !(item.name === modelName && item.price === price && item.userId === userId));
+
+            localStorage.setItem('bookedModels', JSON.stringify(bookedItems));
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users = users.filter(user => user.id !== userId);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

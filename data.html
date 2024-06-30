@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body{
+        background-image: url(https://i.pinimg.com/originals/66/6a/a5/666aa50f37f06ade63571c349204e784.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    }
+    .container{
+        background-image: url(https://i.pinimg.com/originals/66/6a/a5/666aa50f37f06ade63571c349204e784.jpg);
+        background-size: cover;
+    margin-left: 520px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    margin-top: 60px;
+      }
+
+
+table {
+    
+    border-collapse: collapse;
+}
+
+td {
+    padding-left: 60px;
+    padding-top: 20px;
+     
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+@media (max-width: 480px) {
+    .background-image{
+        height: auto;
+        width: auto;
+        font-size: xx-small;
+    }
+    .container {
+        padding: 10px;
+        margin-left: 0px;
+    }
+    table td {
+        font-size: small; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (min-width: 481px) and (max-width: 800px) {
+    .container {
+        margin-left: 100px;
+    }
+    }
+    .background-image {
+        height: auto; /* Further adjust height for very small screens */
+width: auto;
+    }
+
+
+</style>
+<body>
+    <div id="Head">
+        <img id="menuToggle" style="width: 15%; cursor: pointer;" src="https://img.freepik.com/premium-vector/bridal-logo_754499-66.jpg">
+        <ul id="menuList">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Login</a></li>
+            <li><a href="data.html">Data</a></li>
+            <li><a href="models.html">Models</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Policy.html">Policy</a></li>
+            <li><a href="booked.html">Booked</a></li>
+         </ul>
+        
+    </div>
+        <div class="container">
+            <h1>!! WeLcOmE !!</h1>
+            <div style="background-image: url(https://media.istockphoto.com/id/1173599693/photo/welcome-sign-on-outdoor-background-at-sunset.jpg?s=612x612&w=0&k=20&c=ZA1pTaakoiOJ-jYZ9Hj1pS1VbBeD1nEu-u-6jOrgNe0=);"></div>
+            <table style="font-size: large;">
+                <tr>
+                    <td >Name:</td>
+                    <td><span id="name"></span></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><span id="email"></span></td>
+                </tr>
+                <tr>
+                    <td>Contact No.:</td>
+                    <td><span id="contact"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;"><button onclick="redirectToModels()" style="width: 100px;height: 40px; border-radius: 20px; background-color: rgb(242, 0, 0);cursor: pointer;margin-left: 40px;">Next</button></td>
+                </tr>
+
+            </table>
+        </div>
+        
+    
+    <script>
+      const name = localStorage.getItem('userName');
+        const email = localStorage.getItem('userEmail');
+        const contact = localStorage.getItem('userContact');
+
+        document.getElementById('name').textContent = name;
+        document.getElementById('email').textContent = email;
+        document.getElementById('contact').textContent = contact;
+        
+        function redirectToModels() {
+            window.location.href = 'models.html';
+        }
+       
+    </script>
+</body>
+</html>
